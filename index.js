@@ -29,4 +29,51 @@ app.post('/shelves_post', async (req, res) => {
     res.redirect('/')
 });
 
+app.get('/put/:id', async (req, res) => {
+    const shelves = await axios.get(base_url + "/shelves/" + req.params.id);
+    res.render('shelves_put', { shelves: shelves.data });
+});
+
+app.post('/put/:id', async (req, res) => {
+    const shelves = await axios.put(base_url + "/shelves/" + req.params.id, req.body);
+    res.redirect('/');
+});
+
+///////////////////////////////////////////////////////////
+/// BOOKS
+
+app.get('/books', async (req, res) => {
+    const books = await axios.get(base_url + '/books');
+    res.render('books', { books: books.data });
+});
+
+app.get('/books_post', async (req, res) => {
+    res.render('books_post');
+});
+
+app.post('/book_post', async (req, res) => {
+    const post = await axios.post(base_url + '/books', req.body);
+    res.redirect('/');
+});
+
+app.get('/books_put/:id', async (req, res) => {
+    const books = await axios.get(base_url + "/books/" + req.params.id);
+    res.render('books_put', { books: books.data });
+});
+
+app.post('/books_put/:id', async (req, res) => {
+    const books = await axios.put(base_url + "/books/" + req.params.id, req.body);
+    res.redirect('/');
+});
+
+app.get('/delete/:id', async (req, res) => {
+    try {
+        await axios.delete(base_url + "/books/" + req.params.id);
+        res.redirect('/');
+    } catch (err) {
+        res.status(200).send(err.message);
+        console.log(err.message);
+    }
+});
+
 app.listen(5500, () => console.log("localhost: 5500"));

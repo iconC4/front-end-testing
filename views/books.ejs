@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shelves</title>
+    <title>Books</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -16,32 +16,36 @@
             <a href="/books">BOOKS</a>
         </div>
         <div class="content">
-            <h1>SHELVES</h1>
-            <a href="/shelves_post">Add Shelves</a>
+            <h1>BOOKS</h1>
+            <a href="/books_post">Add Books</a>
             <table>
                 <tr>
+                    <th>id</th>
+                    <th>title</th>
+                    <th>author</th>
                     <th>shelf_id</th>
-                    <th>category</th>
-                    <th>total_books</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-                <% for(let i=0; i < shelves.length; i++) { %>
+                <% for(let i=0; i < books.length; i++) { %>
                     <tr>
                         <td>
-                            <%= shelves[i].shelf_id %>
+                            <%= books[i].id %>
                         </td>
                         <td>
-                            <%= shelves[i].category %>
+                            <%= books[i].title %>
                         </td>
                         <td>
-                            <%= shelves[i].total_books %>
+                            <%= books[i].author %>
                         </td>
                         <td>
-                            <a href="/put/<%= shelves[i].shelf_id %>">Edit</a>
+                            <%= books[i].shelf_id %>
                         </td>
                         <td>
-                            <a href="/delete/<%= shelves[i].shelf_id %>">Delete</a>
+                            <a href="/books_put/<%= books[i].id %>">Edit</a>
+                        </td>
+                        <td>
+                            <a href="/books/<%= books[i].id %>">Delete</a>
                         </td>
                     </tr>
                     <% } %>
